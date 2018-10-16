@@ -47,8 +47,8 @@ $(document).ready(function() {
           var text = $("<p></p>");
           $(text).text("Rating: "+response.data[i].rating);
           $(gif).addClass("gif");
-          $(gif).attr("src", response.data[i].images.original.url);
-          $(gif).attr("data-state", "animate");
+          $(gif).attr("src", response.data[i].images.original_still.url);
+          $(gif).attr("data-state", "still");
           $(gif).attr("data-animate",  response.data[i].images.original.url);
           $(gif).attr("data-still",  response.data[i].images.original_still.url);
           
