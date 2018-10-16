@@ -1,12 +1,21 @@
 $(document).ready(function() {
   //initialize array and initial buttons
-  var cartoons = ["Spongebob", "Flintstones", "Yugioh!","Popeye","Powerpuff Girls","Simpsons","Futurama", "Pokemon", "Winnie the Pooh"];
+  var cartoons = [
+    "Spongebob",
+    "Flintstones",
+    "Yugioh!",
+    "Popeye",
+    "Powerpuff Girls",
+    "Simpsons",
+    "Futurama",
+    "Pokemon",
+    "Winnie the Pooh"
+  ];
   var userInput = "";
- 
 
   //define function to make the buttons
   var makeButtons = function() {
-      $("#buttons").empty();
+    $("#buttons").empty();
     for (var i = 0; i < cartoons.length; i++) {
       var newButton = $("<button></button>");
       $(newButton).text(cartoons[i]);
@@ -16,8 +25,8 @@ $(document).ready(function() {
     }
   };
 
-
   makeButtons();
+
   //on click of submit button to add a button
   $("#submit").on("click", function(event) {
     event.preventDefault();
@@ -32,40 +41,39 @@ $(document).ready(function() {
     $("#userInput").val("");
   });
 
-  //when a button is clicked
+  //when a button is clicked, ajax call
   $(document).on("click", ".btn-links", function() {
     var user = $(this).attr("data-name");
-    var queryURL ="https://api.giphy.com/v1/gifs/search?q="+user+"&api_key=q4LNHX8YU5TZBRL8LMDV1io0IlyNJhdQ&limit=10";
+    var queryURL =
+      "https://api.giphy.com/v1/gifs/search?q=" +
+      user +
+      "&api_key=q4LNHX8YU5TZBRL8LMDV1io0IlyNJhdQ&limit=10";
 
     $.ajax({
       url: queryURL,
       method: "GET"
     }).then(function(response) {
       console.log(response);
-        for (var i=0; i<10; i++){
-          var gif = $("<img>");
-          var text = $("<p></p>");
-          $(text).text("Rating: "+response.data[i].rating);
-          $(gif).addClass("gif");
-          $(gif).attr("src", response.data[i].images.original_still.url);
-          $(gif).attr("data-state", "still");
-          $(gif).attr("data-animate",  response.data[i].images.original.url);
-          $(gif).attr("data-still",  response.data[i].images.original_still.url);
-          
-          $("#gifs").prepend(gif);
-          $("#gifs").prepend(text);        
-        }
+      for (var i = 0; i < 10; i++) {
+        var gif = $("<img>");
+        var text = $("<p></p>");
+        $(text).text("Rating: " + response.data[i].rating);
+        $(gif).addClass("gif");
+        $(gif).attr("src", response.data[i].images.original_still.url);
+        $(gif).attr("data-state", "still");
+        $(gif).attr("data-animate", response.data[i].images.original.url);
+        $(gif).attr("data-still", response.data[i].images.original_still.url);
 
-
-
-
+        $("#gifs").prepend(gif);
+        $("#gifs").prepend(text);
+      }
     });
-
-
   });
-  $(document).on("click",".gif",function(){
+
+  // Clicking on a gif to animate it
+  $(document).on("click", ".gif", function() {
     var state = $(this).attr("data-state");
-   
+
     if (state === "still") {
       $(this).attr("src", $(this).attr("data-animate"));
       $(this).attr("data-state", "animate");
@@ -73,6 +81,5 @@ $(document).ready(function() {
       $(this).attr("src", $(this).attr("data-still"));
       $(this).attr("data-state", "still");
     }
-  })
-
+  });
 });
