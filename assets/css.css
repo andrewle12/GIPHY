@@ -1,0 +1,42 @@
+body{
+   background-image: url("background.png");
+}
+
+.input-group{
+    float: right;
+    width: 100%;
+    margin-right: 3.1%;
+
+}
+
+.text{
+    float: right;
+    width: 100%;
+    clear: right;
+    font-weight: 700;
+}
+
+#submit{
+    float: right;
+    margin-right: 73%;
+    margin-top: 1px;
+
+}
+
+#buttons{
+    margin-top: 2%;
+    margin-left: 1%
+}
+
+.btn-primary{
+    margin-right: 7px;
+    margin-top: 10px;
+}
+
+img{
+    margin-bottom: 50px;
+}
+
+h1{
+    color: #4CEA74;
+}
