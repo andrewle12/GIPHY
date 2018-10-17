@@ -40,3 +40,24 @@ img{
 h1{
     color: #4CEA74;
 }
+                                                    /* For 640px screens */
+@media screen and (max-width: 640px){
+    #submit{
+        float: right;
+        margin-top: 1px;
+        width: 100%; 
+    }
+    .input-group{
+        float: right;
+        width: 100%;  
+    }
+    img{
+        width: 100%;
+    }
+    .text{
+        float: right;
+        width: 100%;
+        clear: right;
+        font-weight: 700;
+        }
+}
